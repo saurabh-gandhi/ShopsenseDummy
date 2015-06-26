@@ -15,11 +15,5 @@ class feed(APIView):
             collection = db.Story
             response = [post for post in collection.find({}, {'_id': 0}).skip((page -1)*5).limit(5)]
             return Response(response)
-
-class getImage(APIView):
-
-    def get(self,request):
-#       img = request.query_params().get('image_uri')
-        import pdb; pdb.set_trace();
-        img = image.view("/home/saurabh/Desktop/images/1.png")
-        return Response(img, content_type="image/png")
+        
+        return Response({"Not Authenticated":304})
