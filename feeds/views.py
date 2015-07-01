@@ -28,7 +28,7 @@ class search(APIView):
         if auth == basic_authentication():
             query = request.query_params.get('q', 'a')
             client = MongoClient()
-            db = client.test
+            db = client.Explore
             collection = db.loc
             import re
             string = "^" + query 
