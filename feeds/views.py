@@ -1,9 +1,9 @@
 from pymongo.mongo_client import MongoClient
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+import json ,os
 from feeds.basic_authentication import basic_authentication
-
+from Erecto001.settings import BASE_DIR
 
 class feed(APIView):
 
@@ -36,3 +36,19 @@ class search(APIView):
             response = [post for post in collection.find({'value':{'$regex' : regx}}, {'_id': 0})]
             return Response(response)
 
+class get_product(APIView):
+
+    def get(self,request):
+        import pdb
+        pdb.set_trace()
+        auth = request.META['HTTP_AUTHORIZATION']
+        head = basic_authentication()
+        if auth == basic_authentication():
+            prod_id = request.query_params.get('product_id')
+            latitude = request.query_params.get('latitude')
+            longitude = request.query_params.get('longitude')
+            json_dir = os.path.join(BASE_DIR,"jsonfile/pdp.json")
+            with open(json_dir) as outfile:
+                res = json.load(outfile)
+                return Response(res)
+        return Response({"Not Authenticated":304})

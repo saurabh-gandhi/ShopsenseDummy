@@ -17,12 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from feeds.views import feed 
-from feeds.views import search
-
+from feeds.views import feed ,search , get_product
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^feeds/', feed.as_view()),
     url(r'^search/', search.as_view()),
+    url(r'^get-product/', get_product.as_view())
 ]
