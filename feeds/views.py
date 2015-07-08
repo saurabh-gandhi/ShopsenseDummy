@@ -39,8 +39,6 @@ class search(APIView):
 class get_product(APIView):
 
     def get(self,request):
-        import pdb
-        pdb.set_trace()
         auth = request.META['HTTP_AUTHORIZATION']
         head = basic_authentication()
         if auth == basic_authentication():
